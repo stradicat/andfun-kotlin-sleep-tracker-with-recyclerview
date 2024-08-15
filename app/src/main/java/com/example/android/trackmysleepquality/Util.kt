@@ -26,7 +26,7 @@ import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.trackmysleepquality.database.SleepNight
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 /**
@@ -56,10 +56,12 @@ fun convertDurationToFormatted(startTimeMilli: Long, endTimeMilli: Long, res: Re
             val seconds = TimeUnit.SECONDS.convert(durationMilli, TimeUnit.MILLISECONDS)
             res.getString(R.string.seconds_length, seconds, weekdayString)
         }
+
         durationMilli < ONE_HOUR_MILLIS -> {
             val minutes = TimeUnit.MINUTES.convert(durationMilli, TimeUnit.MILLISECONDS)
             res.getString(R.string.minutes_length, minutes, weekdayString)
         }
+
         else -> {
             val hours = TimeUnit.HOURS.convert(durationMilli, TimeUnit.MILLISECONDS)
             res.getString(R.string.hours_length, hours, weekdayString)
@@ -96,7 +98,7 @@ fun convertNumericQualityToString(quality: Int, resources: Resources): String {
 @SuppressLint("SimpleDateFormat")
 fun convertLongToDateString(systemTime: Long): String {
     return SimpleDateFormat("EEEE MMM-dd-yyyy' Time: 'HH:mm")
-            .format(systemTime).toString()
+        .format(systemTime).toString()
 }
 
 /**
@@ -149,4 +151,4 @@ fun formatNights(nights: List<SleepNight>, resources: Resources): Spanned {
  * A ViewHolder holds a view for the [RecyclerView] as well as providing additional information
  * to the RecyclerView such as where on the screen it was last drawn during scrolling.
  */
-class TextItemViewHolder(val textView: TextView): RecyclerView.ViewHolder(textView)
+class TextItemViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
